@@ -3,7 +3,7 @@ const con = createConnection({
     host:"localhost",
     user:"root",
     password:"",
-    database:"ivault"
+    database:"ivaultdb"
 });
 
 con.connect(error => {

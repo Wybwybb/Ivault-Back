@@ -30,7 +30,7 @@ exports.addUser = (req, res) => {
   }
   
 
-  const agent = new Post({
+  const agent = new Users({
     username: req.body.username,
     password: req.body.password,
 

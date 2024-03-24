@@ -32,10 +32,10 @@ Users.getUsers = (result) => {
   );
 };
 //posters
-Users.addPost = (newUsers, result) => {
+Users.addUser = (newUsers, result) => {
   const status = "pending";
   sql.query(
-    "INSERT INTO post SET ?",
+    "INSERT INTO users SET ?",
     {
       username: newUsers.username,
       password: newUsers.password
