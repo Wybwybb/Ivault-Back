@@ -1,5 +1,3 @@
-
-
 const { Users} = require("../models/models.js");
 
 // start swift aid backend
@@ -31,8 +29,11 @@ exports.addUser = (req, res) => {
   
 
   const agent = new Users({
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
     username: req.body.username,
     password: req.body.password,
+    password1: req.body.password1,
 
   });
 
