@@ -31,7 +31,9 @@ exports.addUser = (req, res) => {
   const agent = new Users({
     firstname: req.body.firstname,
     lastname: req.body.lastname,
+    contactnumber: req.body.contactnumber,
     username: req.body.username,
+    username1: req.body.username1,
     password: req.body.password,
     password1: req.body.password1,
 
@@ -48,6 +50,3 @@ exports.addUser = (req, res) => {
     res.send(data);
   });
 };
-
-
-
