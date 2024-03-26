@@ -1,5 +1,4 @@
 module.exports = (app) => {
-
   const router = require('express').Router();
   const multer = require('multer');
   const storage = multer.memoryStorage(); 
@@ -9,13 +8,13 @@ module.exports = (app) => {
 
   // GETTERS
   router.get("/getUsers", controller.getUsers);
-  //posters
-  router.post('/addUser',upload.single(''), controller.addUser);
 
-
-
-
-
+  // POSTERS
+  router.post('/addUser', upload.single(''), controller.addUser);
+  
+  // Add route to handle adding accounts
+  router.post('/addAccount', controller.addAccount);
 
   app.use('/', router);
 };
+  

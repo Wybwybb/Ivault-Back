@@ -67,4 +67,25 @@ Users.addUser = (newUsers, result) => {
     }
   );
 };
+Users.getFirstNameByUsername = (username, result) => {
+  sql.query(
+    "SELECT firstname FROM users WHERE username = ?",
+    [username],
+    (err, res) => {
+      if (err) {
+        console.log("Error in executing getFirstNameByUsername query: ", err);
+        result(err, null);
+        return;
+      }
+
+      if (res.length) {
+        result(null, res[0].firstname);
+        return;
+      }
+
+      result({ message: "User not found" }, null);
+    }
+  );
+};
+
 module.exports.Users = Users;

@@ -1,52 +1,97 @@
-const { Users} = require("../models/models.js");
+const { Users } = require("../models/models.js");
 
-// start swift aid backend
-//getters
 exports.getUsers = (req, res) => {
   if (!req.body) {
-    res.status(400).send({
+    return res.status(400).send({
       message: "Content cannot be empty",
     });
-    return;
   }
   Users.getUsers((err, users) => {
     if (err) {
       return res.status(500).send({
-        message: err.message || "Some error message",
+        message: err.message || "Some error occurred",
       });
     }
     res.send(users);
   });
 };
 
-//posters
+
 exports.addUser = (req, res) => {
   if (!req.body) {
-    res.status(400).send({
+    return res.status(400).send({
       message: "Content cannot be empty",
     });
   }
+
+  exports.authenticateUser = (req, res) => {
+    // Assuming you have verified the user's credentials and authenticated them successfully
+    const { username } = req.body;
   
+    // Call the function to retrieve the first name of the authenticated user
+    Users.getFirstNameByUsername(username, (err, firstName) => {
+      if (err) {
+        return res.status(500).send({
+          message: err.message || "Error occurred while retrieving user's first name",
+        });
+      }
+  
+      // Send the first name back to the frontend
+      res.send({ firstName });
+    });
+  };
+  
+  const {
+    firstname,
+    lastname,
+    contactnumber,
+    username,
+    username1,
+    password,
+    password1,
+  } = req.body;
 
-  const agent = new Users({
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    contactnumber: req.body.contactnumber,
-    username: req.body.username,
-    username1: req.body.username1,
-    password: req.body.password,
-    password1: req.body.password1,
-
+  const newUser = new Users({
+    firstname,
+    lastname,
+    contactnumber,
+    username,
+    username1,
+    password,
+    password1,
   });
 
-  Users.addUser(agent, (err, data) => {
+  Users.addUser(newUser, (err, data) => {
     if (err) {
       return res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating Users.",
+        message: err.message || "Some error occurred while creating user.",
       });
     }
+    res.send(data);
+  });
+};
 
+exports.addAccount = (req, res) => {
+  const { website, username, password } = req.body;
+
+  if (!website || !username || !password) {
+    return res.status(400).send({
+      message: "Website, username, and password are required fields.",
+    });
+  }
+
+  const newAccount = new Users({
+    website,
+    username,
+    password,
+  });
+
+  Users.addUser(newAccount, (err, data) => {
+    if (err) {
+      return res.status(500).send({
+        message: err.message || "Some error occurred while adding the account.",
+      });
+    }
     res.send(data);
   });
 };
