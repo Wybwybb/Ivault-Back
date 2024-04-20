@@ -5,8 +5,8 @@ const nodemailer = require('nodemailer');
 let transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: 'bryansagarino222@gmail.com',
-        pass: 'sfld srmj kclj vmgt'
+        user: 'rybrybb@gmail.com',
+        pass: 'cyyw iodm thcm kxpt'
     }
 });
 
@@ -14,7 +14,7 @@ let transporter = nodemailer.createTransport({
 exports.sendEmail = (to, subject, htmlContent) => {
     // Email options
     let mailOptions = {
-        from: 'bryansagarino222@gmail.com',
+        from: 'rybrybb@gmail.com',
         to: to,
         subject: subject,
         html: htmlContent  // Set the content type to HTML
