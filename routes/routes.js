@@ -6,7 +6,7 @@ module.exports = (app) => {
 
   const controller = require('../controllers/controllers.js');
 
-  // GETTERS
+  // GETTERS 
   router.get("/getUsers", controller.getUsers);
   router.get("/getCategory", controller.getCategory);
   router.get("/getWebsite", controller.getWebsite);
